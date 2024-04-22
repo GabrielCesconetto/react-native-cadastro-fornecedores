@@ -1,19 +1,19 @@
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Cadastro from "./views/Cadastro";
+import Listagem from "./views/Listagem";
 
 export default App = () => {
-  const [text, setText] = useState("");
+  const Tab = createBottomTabNavigator();
 
   return (
-    <View style={styles.container}>
-      <Text style={{ padding: 10, fontSize: 22 }}>
-        {text
-          .split(" ")
-          .map((word) => word && "🍕")
-          .join(" ")}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Cadastro" component={Cadastro} />
+        <Tab.Screen name="Listagem" component={Listagem} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 };
