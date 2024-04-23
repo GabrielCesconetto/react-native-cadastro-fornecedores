@@ -28,7 +28,6 @@ const Cadastro = () => {
                 await AsyncStorage.setItem('fornecedor', JSON.stringify([fornecedor]));
             }
             Alert.alert('Sucesso', 'Fornecedor salvo com sucesso.');
-            LimparCampos();
         } catch (error) {
             console.error('Erro ao salvar fornecedor:', error);
             Alert.alert('Erro', 'Ocorreu um erro ao salvar o fornecedor.');
@@ -48,28 +47,31 @@ const Cadastro = () => {
         style={styles.input}
         placeholder="Nome"
         onChangeText={(newText) => setNome(newText)}
-        defaultValue={nome}
+        value={nome}
         />
         <TextInput
         style={styles.input}
         placeholder="Endereço"
         onChangeText={(newText) => setEndereco(newText)}
-        defaultValue={endereco}
+        value={endereco}
         />
         <TextInput
         style={styles.input}
         placeholder="Contato"
         onChangeText={(newText) => setContato(newText)}
-        defaultValue={contato}
+        value={contato}
         />
         <TextInput
         style={styles.input}
         placeholder="Categoria Produto"
         onChangeText={(newText) => setCategoriaProduto(newText)}
-        defaultValue={categoriaProduto}
+        value={categoriaProduto}
         />
         <Button
-            onPress={() => SalvarFornecedor()}
+            onPress={() => {
+                LimparCampos();
+                SalvarFornecedor();
+            }}
             title="Salvar"
             color="#841584"
             aria-label="Botão Salvar"

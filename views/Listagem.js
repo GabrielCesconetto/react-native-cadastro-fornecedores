@@ -43,6 +43,7 @@ const Listagem = () => {
         defaultValue={filtroProduto}
         />
         <SectionList
+        extraData={filtroProduto}
         sections={fornecedores}
         renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
         renderSectionHeader={({ section }) => (
