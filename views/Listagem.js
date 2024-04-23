@@ -18,6 +18,7 @@ const Listagem = () => {
                 fornecedorGet = fornecedorGet.filter(element => element?.categoriaProduto?.startsWith(filtroProduto));
             }
             const arrFornecedores = [];
+            if (fornecedorGet === null) return
             fornecedorGet.forEach(element => {
                 const obj = {
                     title: element.nome,
