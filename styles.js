@@ -17,4 +17,14 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
     },
+    item: {
+        color: '#1285D5',
+        textShadowColor: 'black',
+        textShadowRadius: '1px'
+    },
+    sectionHeader: {
+        fontSize: 22,
+        fontWeight: 700,
+        textTransform: 'uppercase'
+    }
 })

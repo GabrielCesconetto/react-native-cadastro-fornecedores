@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Button, Text, TextInput, View, AsyncStorage, Alert } from "react-native";
+import { Button, Text, TextInput, View, Alert } from "react-native";
 import { styles } from "../styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Cadastro = () => {
     const 
@@ -15,13 +16,27 @@ const Cadastro = () => {
                 endereco,
                 contato
             };
-            console.log(fornecedor);
-            await AsyncStorage.setItem('fornecedor', JSON.stringify(fornecedor));
+            var fornecedoresStore = await AsyncStorage.getItem('fornecedor');
+            fornecedoresStore = JSON.parse(fornecedoresStore);
+            if (fornecedoresStore !== null) {
+                fornecedoresStore.push(fornecedor);
+                console.log(fornecedoresStore);
+                await AsyncStorage.setItem('fornecedor', JSON.stringify(fornecedoresStore));
+            } else {
+                await AsyncStorage.setItem('fornecedor', JSON.stringify([fornecedor]));
+            }
             Alert.alert('Sucesso', 'Fornecedor salvo com sucesso.');
+            LimparCampos();
         } catch (error) {
             console.error('Erro ao salvar fornecedor:', error);
             Alert.alert('Erro', 'Ocorreu um erro ao salvar o fornecedor.');
         }
+    }
+
+    const LimparCampos = () => {
+        setNome('');
+        setEndereco('');
+        setContato('');
     }
 
     return (
