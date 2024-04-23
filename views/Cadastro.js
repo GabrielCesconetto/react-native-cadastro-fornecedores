@@ -7,14 +7,16 @@ const Cadastro = () => {
     const 
         [nome, setNome] = useState(""),
         [endereco, setEndereco] = useState(""),
-        [contato, setContato] = useState("");
+        [contato, setContato] = useState(""),
+        [categoriaProduto, setCategoriaProduto] = useState("");
 
     const SalvarFornecedor = async () => {
         try {
             const fornecedor = {
                 nome,
                 endereco,
-                contato
+                contato,
+                categoriaProduto
             };
             var fornecedoresStore = await AsyncStorage.getItem('fornecedor');
             fornecedoresStore = JSON.parse(fornecedoresStore);
@@ -59,6 +61,12 @@ const Cadastro = () => {
         placeholder="Contato"
         onChangeText={(newText) => setContato(newText)}
         defaultValue={contato}
+        />
+        <TextInput
+        style={styles.input}
+        placeholder="Categoria Produto"
+        onChangeText={(newText) => setCategoriaProduto(newText)}
+        defaultValue={categoriaProduto}
         />
         <Button
             onPress={() => SalvarFornecedor()}
